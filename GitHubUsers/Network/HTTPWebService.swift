@@ -25,11 +25,11 @@ extension HTTPWebService {
   func call(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) async throws -> Data {
     let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
     
-    guard let url = request.url else {
+    guard let _ = request.url else {
       throw HTTPError.invalidRequest
     }
     
-    let (data, response) = try await session.startData(request)
+    let (data, _) = try await session.startData(request)
     
     return data
   }

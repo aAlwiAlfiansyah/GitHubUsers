@@ -21,10 +21,10 @@ public struct GitHubUser: Codable, Sendable {
   public let name: String?
  
   /// The avatar URL for this GitHub User resource
-  public let avatarURL: String?
+  public let avatarUrl: String?
   
   /// The repositories URL for this GitHub User resource
-  public let reposURL: String?
+  public let reposUrl: String?
 
   /// The type for this GitHub User resource
   public let type: String?
@@ -34,4 +34,15 @@ public struct GitHubUser: Codable, Sendable {
 
   /// The number of following for this GitHub User resource
   public let following: Int?
+  
+  init(id: Int?, login: String?, name: String?, avatarUrl: String?, reposUrl: String?, type: String?, followers: Int?, following: Int?) {
+    self.id = id
+    self.login = login
+    self.name = name
+    self.avatarUrl = avatarUrl
+    self.reposUrl = reposUrl
+    self.type = type
+    self.followers = followers
+    self.following = following
+  }
 }

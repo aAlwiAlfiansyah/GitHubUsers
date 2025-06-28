@@ -11,6 +11,7 @@ import Foundation
 public enum HTTPHeader {
     case contentType(MediaType)
     case accept(MediaType)
+    case authorizationBearer(String)
     case acceptVersion(String)
     case ifModifiedSince(Date)
     
@@ -20,6 +21,8 @@ public enum HTTPHeader {
             return "Content-Type"
         case .accept, .acceptVersion:
             return "Accept"
+        case .authorizationBearer:
+            return "Authorization"
         case .ifModifiedSince:
             return "If-Modified-Since"
         }
@@ -31,6 +34,8 @@ public enum HTTPHeader {
             return mediaType.headerValue
         case .accept(let mediaType):
             return mediaType.headerValue
+        case .authorizationBearer(let value):
+            return "Bearer \(value)"
         case .acceptVersion(let value):
             return value
         case .ifModifiedSince(let date):

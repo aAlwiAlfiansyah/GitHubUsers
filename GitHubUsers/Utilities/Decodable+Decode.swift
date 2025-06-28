@@ -10,13 +10,17 @@ import Foundation
 
 extension Decodable {
   public static func decode(from data: Data) throws -> Self {
-    return try JSONDecoder().decode(self, from: data)
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    return try decoder.decode(self, from: data)
   }
 }
 
 
 extension Array where Element: Decodable {
   public static func decode(from data: Data) throws -> Array {
-    return try JSONDecoder().decode(self, from: data)
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
+    return try decoder.decode(self, from: data)
   }
 }

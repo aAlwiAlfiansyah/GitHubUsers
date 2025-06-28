@@ -41,13 +41,22 @@ public struct GitHubUserService: GHUGitHubUserService, Sendable {
    Fetch GitHub User list
    */
   public func fetchUserList(paginationState: PaginationState<GitHubUser> = .initial(pageLimit: 30)) async throws -> PagedObject<GitHubUser> {
-    try await callPaginated(endpoint: API.fetchUserList, paginationState: paginationState)
+    try await callPaginated(endpoint: API.fetchUserList, paginationState: paginationState, headers: setupDefaultHeader())
   }
   
   /**
    Fetch GitHub User details
    */
   func fetchUser(_ userId: Int) async throws -> GitHubUser {
-    try await GitHubUser.decode(from: call(endpoint: API.fetchUserById(userId)))
+    try await GitHubUser.decode(from: call(endpoint: API.fetchUserById(userId), headers: setupDefaultHeader()))
+  }
+  
+  
+  private func setupDefaultHeader() -> [HTTPHeader] {
+    var headers: [HTTPHeader] = []
+    headers.append(HTTPHeader.accept(.json))
+    headers.append(HTTPHeader.authorizationBearer(APIConfig.githubAccessToken))
+    
+    return headers
   }
 }
