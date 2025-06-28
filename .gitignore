@@ -84,6 +84,7 @@ outputs/*
 
 # ENV files
 .env
+env-vars.sh
 
 # Generated files
-
+*.generated.swift
