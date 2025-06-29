@@ -1,0 +1,12 @@
+//
+//  APIConfig.stencil
+//  GitHubUsers
+//
+//  Created by Alwi Alfiansyah Ramdan on 28/06/25.
+//
+
+import Foundation
+
+public struct APIConfig {
+  static let githubAccessToken = "{{ argument.github_access_token }}"
+}
