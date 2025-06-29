@@ -8,15 +8,18 @@
 import Foundation
 
 public final class GitHubUsersAPI: Sendable {
-    public let session: URLSession
-    
-    public init(session: URLSession = URLSession.shared) {
-        self.session = session
-        
-        githubUserService = GitHubUserService(session: session)
-        githubUserRepoService = GitHubUserRepoService(session: session)
+  public let session: URLSession
+  
+  public init(
+    session: URLSession = URLSession.shared,
+    githubUserService: GHUGitHubUserService = GitHubUserService(session: URLSession.shared),
+    githubuserRepoService: GHUGitHubUserRepoService = GitHubUserRepoService(session: URLSession.shared)) {
+      self.session = session
+      
+      self.githubUserService = githubUserService
+      self.githubUserRepoService = githubuserRepoService
     }
-    
-    public let githubUserService: GitHubUserService
-    public let githubUserRepoService: GitHubUserRepoService
+  
+  public let githubUserService: GHUGitHubUserService
+  public let githubUserRepoService: GHUGitHubUserRepoService
 }
