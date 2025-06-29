@@ -63,9 +63,6 @@ class GitHubUserDetailsViewModel: ObservableObject {
           }
         }
         await MainActor.run {
-          self.githubRepos.sort {
-            $0.id! < $1.id!
-          }
           self.hasNext = pagedObject.hasNext
         }
       }
@@ -74,6 +71,35 @@ class GitHubUserDetailsViewModel: ObservableObject {
         self.githubRepos = []
         self.repoMap = [:]
       }
+    }
+  }
+  
+  func fetchMoreGitHubUserRepoList() async {
+    do {
+      guard let pagedObject = self.pagedObject else { return }
+      guard pagedObject.hasNext else { return }
+      
+      self.pagedObject = try await gitHubUsersAPI.githubUserRepoService.fetchUserRepoList(githubUser.login!, paginationState: .continuing(pagedObject, .next))
+      
+      guard let pagedObject = self.pagedObject else { return }
+      
+      if let listResult = pagedObject.results {
+        for repoResourse in listResult {
+          let isForked: Bool = repoResourse.fork ?? false
+          if repoMap[repoResourse.id!] == nil && !isForked {
+            await MainActor.run {
+              self.githubRepos.append(repoResourse)
+              self.repoMap[repoResourse.id!] = repoResourse
+            }
+          }
+        }
+        await MainActor.run {
+          self.hasNext = pagedObject.hasNext
+        }
+      }
+      
+    } catch {
+      // Do Nothing
     }
   }
   
