@@ -32,7 +32,9 @@ struct GitHubUserDetailsView: View {
       ScrollView {
         LazyVStack {
           ForEach(viewModel.githubRepos.compactMap { $0 }, id: \.id) { item in
-            GitHubUserRepoListViewItem(githubRepo: item)
+            NavigationLink(value: item) {
+              GitHubUserRepoListViewItem(githubRepo: item)
+            }
           }
         }
       }
@@ -40,6 +42,12 @@ struct GitHubUserDetailsView: View {
     }
     .navigationTitle("GitLab User Details")
     .navigationBarTitleDisplayMode(.inline)
+    .navigationDestination(for: GitHubRepo.self) { repo in
+      
+      if let repoHtml = repo.htmlUrl {
+        WebView(url: repoHtml)
+      }
+    }
     .onAppear {
       Task {
         await viewModel.fetchUserDetailsInfo()
