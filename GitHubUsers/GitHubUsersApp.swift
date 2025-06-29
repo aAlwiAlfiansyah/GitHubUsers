@@ -25,7 +25,9 @@ struct GitHubUsersApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let githubUserAPI = GitHubUsersAPI()
+            let viewModel = GitHubUserListViewModel(githubUsersAPI: githubUserAPI)
+            GitHubUserListView(viewModel: viewModel)
         }
         .modelContainer(sharedModelContainer)
     }
