@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - GitHub User
 
-public struct GitHubUser: Codable, Sendable {
+public struct GitHubUser: Codable, Sendable, Hashable {
   
   /// The id for this GitHub User resource
   public let id: Int?

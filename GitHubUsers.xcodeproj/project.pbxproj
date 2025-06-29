@@ -19,6 +19,11 @@
 		C1727E7B2E10043F00F8AFAB /* GitHubUsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E7A2E10043F00F8AFAB /* GitHubUsersAPI.swift */; };
 		C1727E7E2E10068100F8AFAB /* GitHubUserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E7D2E10068100F8AFAB /* GitHubUserListView.swift */; };
 		C1727E802E1006BB00F8AFAB /* GitHubUserListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E7F2E1006BB00F8AFAB /* GitHubUserListViewItem.swift */; };
+		C1727E852E10629900F8AFAB /* GitHubUserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E842E10629900F8AFAB /* GitHubUserDetailsViewModel.swift */; };
+		C1727E892E10643900F8AFAB /* GitHubUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E882E10643900F8AFAB /* GitHubUserInfoView.swift */; };
+		C1727E8B2E1066F100F8AFAB /* GitHubUserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E8A2E1066F100F8AFAB /* GitHubUserDetailsView.swift */; };
+		C1727E8D2E10738200F8AFAB /* GitHubUserRepoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E8C2E10738200F8AFAB /* GitHubUserRepoServices.swift */; };
+		C1727E8F2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E8E2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift */; };
 		C17C4E712E0F93A2009D76F4 /* GitHubUsersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */; };
 		C17C4E732E0F93A2009D76F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E722E0F93A2009D76F4 /* ContentView.swift */; };
 		C17C4E752E0F93A2009D76F4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E742E0F93A2009D76F4 /* Item.swift */; };
@@ -74,6 +79,11 @@
 		C1727E7A2E10043F00F8AFAB /* GitHubUsersAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUsersAPI.swift; sourceTree = "<group>"; };
 		C1727E7D2E10068100F8AFAB /* GitHubUserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserListView.swift; sourceTree = "<group>"; };
 		C1727E7F2E1006BB00F8AFAB /* GitHubUserListViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserListViewItem.swift; sourceTree = "<group>"; };
+		C1727E842E10629900F8AFAB /* GitHubUserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailsViewModel.swift; sourceTree = "<group>"; };
+		C1727E882E10643900F8AFAB /* GitHubUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserInfoView.swift; sourceTree = "<group>"; };
+		C1727E8A2E1066F100F8AFAB /* GitHubUserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailsView.swift; sourceTree = "<group>"; };
+		C1727E8C2E10738200F8AFAB /* GitHubUserRepoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserRepoServices.swift; sourceTree = "<group>"; };
+		C1727E8E2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserRepoListViewItem.swift; sourceTree = "<group>"; };
 		C17C4E6D2E0F93A2009D76F4 /* GitHubUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUsersApp.swift; sourceTree = "<group>"; };
 		C17C4E722E0F93A2009D76F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 		C1727E722E0FF3AD00F8AFAB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C1727E8C2E10738200F8AFAB /* GitHubUserRepoServices.swift */,
 				C1727E732E0FF3CA00F8AFAB /* GitHubUserServices.swift */,
 				C1727E7A2E10043F00F8AFAB /* GitHubUsersAPI.swift */,
 			);
@@ -183,6 +194,33 @@
 			children = (
 				C1727E7D2E10068100F8AFAB /* GitHubUserListView.swift */,
 				C1727E7F2E1006BB00F8AFAB /* GitHubUserListViewItem.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C1727E832E10626F00F8AFAB /* GitHubUserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C1727E872E10641800F8AFAB /* View */,
+				C1727E862E10629D00F8AFAB /* ViewModel */,
+			);
+			path = GitHubUserDetails;
+			sourceTree = "<group>";
+		};
+		C1727E862E10629D00F8AFAB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1727E842E10629900F8AFAB /* GitHubUserDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C1727E872E10641800F8AFAB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C1727E882E10643900F8AFAB /* GitHubUserInfoView.swift */,
+				C1727E8E2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift */,
+				C1727E8A2E1066F100F8AFAB /* GitHubUserDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +256,7 @@
 				C17C4E9D2E0FA2FC009D76F4 /* Helpers */,
 				C1727E722E0FF3AD00F8AFAB /* Services */,
 				C1727E752E10035B00F8AFAB /* GitHubUserList */,
+				C1727E832E10626F00F8AFAB /* GitHubUserDetails */,
 				C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */,
 				C17C4E722E0F93A2009D76F4 /* ContentView.swift */,
 				C17C4E742E0F93A2009D76F4 /* Item.swift */,
@@ -526,19 +565,24 @@
 				C17C4EBA2E0FBA61009D76F4 /* URLSession+Request.swift in Sources */,
 				C17C4E732E0F93A2009D76F4 /* ContentView.swift in Sources */,
 				C17C4EA82E0FAFD1009D76F4 /* APIConfig.generated.swift in Sources */,
+				C1727E8F2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift in Sources */,
+				C1727E852E10629900F8AFAB /* GitHubUserDetailsViewModel.swift in Sources */,
 				C17C4EB22E0FB96D009D76F4 /* Decodable+Decode.swift in Sources */,
 				C17C4EB62E0FBA00009D76F4 /* URLRequest+.swift in Sources */,
 				C1727E742E0FF3CA00F8AFAB /* GitHubUserServices.swift in Sources */,
 				C17C4E752E0F93A2009D76F4 /* Item.swift in Sources */,
+				C1727E8D2E10738200F8AFAB /* GitHubUserRepoServices.swift in Sources */,
 				C1727E792E10039900F8AFAB /* GitHubUserListViewModel.swift in Sources */,
 				C17C4EB82E0FBA42009D76F4 /* URLResponse+.swift in Sources */,
 				C1727E6F2E0FF20100F8AFAB /* GitHubRepo.swift in Sources */,
 				C17C4EAF2E0FB928009D76F4 /* Result+Decode.swift in Sources */,
 				C1727E7E2E10068100F8AFAB /* GitHubUserListView.swift in Sources */,
 				C1727E6D2E0FEF7F00F8AFAB /* GitHubUser.swift in Sources */,
+				C1727E8B2E1066F100F8AFAB /* GitHubUserDetailsView.swift in Sources */,
 				C17C4EAB2E0FB8A5009D76F4 /* HTTPError.swift in Sources */,
 				C17C4E712E0F93A2009D76F4 /* GitHubUsersApp.swift in Sources */,
 				C1727E662E0FE56600F8AFAB /* String+.swift in Sources */,
+				C1727E892E10643900F8AFAB /* GitHubUserInfoView.swift in Sources */,
 				C1727E802E1006BB00F8AFAB /* GitHubUserListViewItem.swift in Sources */,
 				C1727E6A2E0FE8A300F8AFAB /* APICall.swift in Sources */,
 				C1727E7B2E10043F00F8AFAB /* GitHubUsersAPI.swift in Sources */,

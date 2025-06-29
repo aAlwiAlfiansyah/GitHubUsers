@@ -30,7 +30,10 @@ struct GitHubUserListView: View {
         LazyVGrid(columns: gridColumns) {
           ForEach(viewModel.githubUsers.compactMap { $0 }, id: \.id) { item in
             GeometryReader { geo in
-              GitHubUserListViewItem(size: geo.size.width, githubUser: item)
+              NavigationLink(value: item) {
+                GitHubUserListViewItem(size: geo.size.width, githubUser: item)
+              }
+              
             }
             .cornerRadius(8.0)
             .aspectRatio(0.7, contentMode: .fit)
@@ -43,6 +46,16 @@ struct GitHubUserListView: View {
       }
       .scrollPosition(id: $dataID)
       .coordinateSpace(name: COORDINATE_SPACE)
+      .navigationTitle("GitLab User List")
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationDestination(for: GitHubUser.self) { [weak viewModel] user in
+        
+        if let gitHubUsersAPI = viewModel?.gitHubUsersAPI {
+          let vm = GitHubUserDetailsViewModel(githubUser: user, gitHubUsersAPI: gitHubUsersAPI)
+          
+          GitHubUserDetailsView(viewModel: vm)
+        }
+      }
     }
     .onAppear {
       Task {
