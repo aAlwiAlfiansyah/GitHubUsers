@@ -58,17 +58,29 @@ public struct PagedObject<T>: Codable, Sendable where T: Sendable {
   
   /// True if there are additional results that can be retrieved
   public var hasNext: Bool {
-    return next != nil
+    guard let nextValue = next else {
+      return false
+    }
+    
+    return !nextValue.isEmpty
   }
   
   /// True if there are previous results that can be retrieved
   public var hasPrevious: Bool {
-    return previous != nil
+    guard let prevValue = previous else {
+      return false
+    }
+    
+    return !prevValue.isEmpty
   }
   
   /// True if there are results that can be retrieved in the last page
   public var hasLast: Bool {
-    return last != nil
+    guard let lastValue = last else {
+      return false
+    }
+    
+    return !lastValue.isEmpty
   }
   
   

@@ -61,4 +61,36 @@ class GitHubUserListViewModel: ObservableObject {
       }
     }
   }
+  
+  func fetchMoreGitHubUserList() async {
+    
+    do {
+      guard let pagedObject = self.pagedObject else { return }
+      guard pagedObject.hasNext else { return }
+      
+      self.pagedObject = try await gitHubUsersAPI.githubUserService.fetchUserList(paginationState: .continuing(pagedObject, .next))
+      
+      guard let pagedObject = self.pagedObject else { return }
+      
+      if let listResult = pagedObject.results {
+        for userResourse in listResult {
+          if userMap[userResourse.id!] == nil {
+            await MainActor.run {
+              self.githubUsers.append(userResourse)
+              self.userMap[userResourse.id!] = userResourse
+            }
+          }
+        }
+        
+        await MainActor.run {
+          self.githubUsers.sort {
+            $0.id! < $1.id!
+          }
+          self.hasNext = pagedObject.hasNext
+        }
+      }
+    } catch {
+      // Do Nothing
+    }
+  }
 }

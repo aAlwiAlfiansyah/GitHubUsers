@@ -12,63 +12,67 @@ struct GitHubUserRepoListViewItem: View {
   
   var body: some View {
     VStack {
-      if let name = githubRepo.name {
-        Text(name)
-          .font(.system(size: 20, weight: .bold, design: .monospaced))
-          .foregroundStyle(.black)
-          .lineLimit(1)
-          .allowsTightening(true)
-          .minimumScaleFactor(0.5)
-      }
-      
-      HStack(alignment: .bottom) {
-        
-        if let language = githubRepo.language {
-          Text(language)
-            .font(.system(size: 18, weight: .regular, design: .monospaced))
-            .italic()
+      VStack {
+        if let name = githubRepo.name {
+          Text(name)
+            .font(.system(size: 20, weight: .bold, design: .monospaced))
             .foregroundStyle(.black)
             .lineLimit(1)
             .allowsTightening(true)
             .minimumScaleFactor(0.5)
-            
         }
         
-        if let stargazersCount = githubRepo.stargazersCount {
-          Label {
-            Text("(\(stargazersCount))")
-              .font(.system(size: 15, weight: .regular, design: .monospaced))
+        HStack(alignment: .bottom) {
+          
+          if let language = githubRepo.language {
+            Text(language)
+              .font(.system(size: 18, weight: .regular, design: .monospaced))
+              .italic()
               .foregroundStyle(.black)
               .lineLimit(1)
               .allowsTightening(true)
               .minimumScaleFactor(0.5)
-          } icon: {
-            Image(systemName: "star.fill")
+              
+          }
+          
+          if let stargazersCount = githubRepo.stargazersCount {
+            Label {
+              Text("(\(stargazersCount))")
+                .font(.system(size: 15, weight: .regular, design: .monospaced))
+                .foregroundStyle(.black)
+                .lineLimit(1)
+                .allowsTightening(true)
+                .minimumScaleFactor(0.5)
+            } icon: {
+              Image(systemName: "star.fill")
+                .foregroundColor(.black.opacity(0.5))
+            }
           }
         }
-      }
-      .padding(.top, 5)
-      .padding(.bottom, 15)
-      
-      if let description = githubRepo.description {
-        Text(description)
-          .font(.system(size: 15, weight: .regular, design: .monospaced))
-          .italic()
-          .foregroundStyle(.black)
-          .lineLimit(3)
-          .allowsTightening(false)
-          .minimumScaleFactor(0.8)
-          .padding(.bottom, 15)
-          .padding(.top, 5)
+        .padding(.top, 5)
+        .padding(.bottom, 15)
+        
+        if let description = githubRepo.description {
+          Text(description)
+            .font(.system(size: 15, weight: .regular, design: .monospaced))
+            .italic()
+            .foregroundStyle(.black)
+            .lineLimit(3)
+            .allowsTightening(false)
+            .minimumScaleFactor(0.8)
+            .padding(.bottom, 15)
+            .padding(.top, 5)
+        }
       }
       
       Line()
         .stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
         .frame(height: 1)
-//        .padding(.vertical)
-      
+        .foregroundColor(.black.opacity(0.8))
     }
     .padding()
+    .background(Color.gray.opacity(0.2))
+    .clipShape(.rect(cornerRadius: 25))
   }
 }
 
