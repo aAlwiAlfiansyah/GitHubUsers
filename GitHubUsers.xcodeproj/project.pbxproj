@@ -26,6 +26,12 @@
 		C1727E8F2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E8E2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift */; };
 		C1727E932E11487100F8AFAB /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E922E11487100F8AFAB /* WebView.swift */; };
 		C1727E952E1157CB00F8AFAB /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E942E1157CB00F8AFAB /* View+.swift */; };
+		C1727E982E11AA4800F8AFAB /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = C1727E972E11AA4800F8AFAB /* Quick */; };
+		C1727E9B2E11AA6B00F8AFAB /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = C1727E9A2E11AA6B00F8AFAB /* Nimble */; };
+		C1727E9E2E11AAC400F8AFAB /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727E9D2E11AAC400F8AFAB /* StringExtensionsTests.swift */; };
+		C1727EA12E11B15200F8AFAB /* GitHubUserListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA02E11B15200F8AFAB /* GitHubUserListViewModelTests.swift */; };
+		C1727EA42E11B43700F8AFAB /* MockedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA32E11B43700F8AFAB /* MockedServices.swift */; };
+		C1727EA62E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA52E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift */; };
 		C17C4E712E0F93A2009D76F4 /* GitHubUsersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */; };
 		C17C4E732E0F93A2009D76F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E722E0F93A2009D76F4 /* ContentView.swift */; };
 		C17C4E752E0F93A2009D76F4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E742E0F93A2009D76F4 /* Item.swift */; };
@@ -88,6 +94,10 @@
 		C1727E8E2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserRepoListViewItem.swift; sourceTree = "<group>"; };
 		C1727E922E11487100F8AFAB /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		C1727E942E1157CB00F8AFAB /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		C1727E9D2E11AAC400F8AFAB /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
+		C1727EA02E11B15200F8AFAB /* GitHubUserListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserListViewModelTests.swift; sourceTree = "<group>"; };
+		C1727EA32E11B43700F8AFAB /* MockedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedServices.swift; sourceTree = "<group>"; };
+		C1727EA52E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		C17C4E6D2E0F93A2009D76F4 /* GitHubUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUsersApp.swift; sourceTree = "<group>"; };
 		C17C4E722E0F93A2009D76F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -129,6 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1727E9B2E11AA6B00F8AFAB /* Nimble in Frameworks */,
+				C1727E982E11AA4800F8AFAB /* Quick in Frameworks */,
 				09C3A65388E1D7F3ABC1B04A /* Pods_GitHubUsersTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +257,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C1727E9C2E11AA9F00F8AFAB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C1727E9D2E11AAC400F8AFAB /* StringExtensionsTests.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C1727E9F2E11AEC300F8AFAB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1727EA02E11B15200F8AFAB /* GitHubUserListViewModelTests.swift */,
+				C1727EA52E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C1727EA22E11B42000F8AFAB /* MockedServices */ = {
+			isa = PBXGroup;
+			children = (
+				C1727EA32E11B43700F8AFAB /* MockedServices.swift */,
+			);
+			path = MockedServices;
+			sourceTree = "<group>";
+		};
 		C17C4E642E0F93A2009D76F4 = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +335,9 @@
 		C17C4E822E0F93A4009D76F4 /* GitHubUsersTests */ = {
 			isa = PBXGroup;
 			children = (
+				C1727EA22E11B42000F8AFAB /* MockedServices */,
+				C1727E9F2E11AEC300F8AFAB /* ViewModel */,
+				C1727E9C2E11AA9F00F8AFAB /* Utilities */,
 				C17C4E832E0F93A4009D76F4 /* GitHubUsersTests.swift */,
 			);
 			path = GitHubUsersTests;
@@ -395,6 +435,10 @@
 				C17C4E812E0F93A4009D76F4 /* PBXTargetDependency */,
 			);
 			name = GitHubUsersTests;
+			packageProductDependencies = (
+				C1727E972E11AA4800F8AFAB /* Quick */,
+				C1727E9A2E11AA6B00F8AFAB /* Nimble */,
+			);
 			productName = GitHubUsersTests;
 			productReference = C17C4E7F2E0F93A4009D76F4 /* GitHubUsersTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -450,6 +494,10 @@
 				Base,
 			);
 			mainGroup = C17C4E642E0F93A2009D76F4;
+			packageReferences = (
+				C1727E962E11AA4800F8AFAB /* XCRemoteSwiftPackageReference "Quick" */,
+				C1727E992E11AA6B00F8AFAB /* XCRemoteSwiftPackageReference "Nimble" */,
+			);
 			productRefGroup = C17C4E6E2E0F93A2009D76F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -618,6 +666,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1727EA62E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift in Sources */,
+				C1727EA12E11B15200F8AFAB /* GitHubUserListViewModelTests.swift in Sources */,
+				C1727E9E2E11AAC400F8AFAB /* StringExtensionsTests.swift in Sources */,
+				C1727EA42E11B43700F8AFAB /* MockedServices.swift in Sources */,
 				C17C4E842E0F93A4009D76F4 /* GitHubUsersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -942,6 +994,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1727E962E11AA4800F8AFAB /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 7.0.2;
+			};
+		};
+		C1727E992E11AA6B00F8AFAB /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 12.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1727E972E11AA4800F8AFAB /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1727E962E11AA4800F8AFAB /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		C1727E9A2E11AA6B00F8AFAB /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1727E992E11AA6B00F8AFAB /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C17C4E652E0F93A2009D76F4 /* Project object */;
 }
