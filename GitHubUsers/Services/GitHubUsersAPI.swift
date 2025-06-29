@@ -14,7 +14,9 @@ public final class GitHubUsersAPI: Sendable {
         self.session = session
         
         githubUserService = GitHubUserService(session: session)
+        githubUserRepoService = GitHubUserRepoService(session: session)
     }
     
     public let githubUserService: GitHubUserService
+    public let githubUserRepoService: GitHubUserRepoService
 }
