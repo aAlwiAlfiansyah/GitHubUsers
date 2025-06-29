@@ -119,7 +119,7 @@ public struct PagedObject<T>: Codable, Sendable where T: Sendable {
     switch paginationState {
     case .initial(let newLimit):
       limit = newLimit
-    case .continuing(let pagedObject, let relationship):
+    case .continuing(let pagedObject, _):
       limit = pagedObject.limit
     }
     
@@ -131,7 +131,7 @@ public struct PagedObject<T>: Codable, Sendable where T: Sendable {
   public func getPageLink(for relationship: PaginationRelationship) -> String? {
     switch relationship {
     case .first:
-      guard var url = self.first, url.count > 0 else {
+      guard let url = self.first, url.count > 0 else {
         return nil
       }
       
@@ -147,7 +147,7 @@ public struct PagedObject<T>: Codable, Sendable where T: Sendable {
   
   /// Helper function. Returns the url string if it exists, nil otherwise or the url is empty
   private func getLink(from urlString: String?) -> String? {
-    guard var url = urlString, url.count > 0 else {
+    guard let url = urlString, url.count > 0 else {
       return nil
     }
     

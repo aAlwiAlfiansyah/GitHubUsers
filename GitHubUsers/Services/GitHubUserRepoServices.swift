@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GHUGitHubUserRepoService: HTTPWebService, Sendable {
+public protocol GHUGitHubUserRepoService: HTTPWebService, Sendable {
   func fetchUserRepoList(_ username: String, paginationState: PaginationState<GitHubRepo>) async throws -> PagedObject<GitHubRepo>
 }
 
@@ -29,6 +29,11 @@ public struct GitHubUserRepoService: GHUGitHubUserRepoService, Sendable {
   public var session: URLSession
   
   public var baseURL: String = "https://api.github.com"
+  
+  /// Initializer
+  public init(session: URLSession) {
+    self.session = session
+  }
   
   
   /**
