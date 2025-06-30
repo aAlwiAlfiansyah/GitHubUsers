@@ -35,7 +35,9 @@ class GitHubUserListViewModel: ObservableObject {
         self.userMap = [:]
       }
       
-      self.pagedObject = try await gitHubUsersAPI.githubUserService.fetchUserList(paginationState: .initial(pageLimit: 30))
+      self.pagedObject = try await gitHubUsersAPI.githubUserService.fetchUserList(
+        paginationState: .initial(pageLimit: 30)
+      )
       
       if let pagedObject = self.pagedObject, let listResult = pagedObject.results {
         
@@ -68,7 +70,9 @@ class GitHubUserListViewModel: ObservableObject {
       guard let pagedObject = self.pagedObject else { return }
       guard pagedObject.hasNext else { return }
       
-      self.pagedObject = try await gitHubUsersAPI.githubUserService.fetchUserList(paginationState: .continuing(pagedObject, .next))
+      self.pagedObject = try await gitHubUsersAPI.githubUserService.fetchUserList(
+        paginationState: .continuing(pagedObject, .next)
+      )
       
       guard let pagedObject = self.pagedObject else { return }
       

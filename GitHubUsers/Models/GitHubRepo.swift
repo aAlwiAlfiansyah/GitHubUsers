@@ -32,7 +32,14 @@ public struct GitHubRepo: Codable, Sendable, Hashable {
   /// The number of star gazers for this GitHub Repo resource
   public let stargazersCount: Int?
   
-  init(id: Int?, name: String?, description: String?, fork: Bool?, htmlUrl: String?, language: String?, stargazersCount: Int?) {
+  init(
+    id: Int?,
+    name: String?,
+    description: String?,
+    fork: Bool?,
+    htmlUrl: String?,
+    language: String?,
+    stargazersCount: Int?) {
     self.id = id
     self.name = name
     self.description = description

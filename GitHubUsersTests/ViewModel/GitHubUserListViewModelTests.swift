@@ -10,9 +10,10 @@ import Quick
 import Nimble
 @testable import GitHubUsers
 
+// swiftlint:disable function_body_length
 final class GitHubUserListViewModelTests: AsyncSpec {
   
-  override class func spec(){
+  override class func spec() {
     describe("GitHubUserListViewModel") {
       var gitHubUsersAPI: GitHubUsersAPI!
       var githubUserService: MockedGitHubUserService!
@@ -71,7 +72,7 @@ final class GitHubUserListViewModelTests: AsyncSpec {
               reposUrl: nil,
               type: nil,
               followers: nil,
-              following: nil),
+              following: nil)
           ]
           
           pagedObject = PagedObject(from: headerLink, with: .initial(pageLimit: 1), currentUrl: "", results: data)
@@ -132,7 +133,7 @@ final class GitHubUserListViewModelTests: AsyncSpec {
               reposUrl: nil,
               type: nil,
               followers: nil,
-              following: nil),
+              following: nil)
           ]
           
           data = [
@@ -153,7 +154,7 @@ final class GitHubUserListViewModelTests: AsyncSpec {
               reposUrl: nil,
               type: nil,
               followers: nil,
-              following: nil),
+              following: nil)
           ]
           
           pagedObject = PagedObject(from: headerLink, with: .initial(pageLimit: 1), currentUrl: "", results: data)
@@ -171,7 +172,7 @@ final class GitHubUserListViewModelTests: AsyncSpec {
           sut.githubUsers = initialData
           sut.userMap = [
             initialData[0].id!: initialData[0],
-            initialData[1].id!: initialData[1],
+            initialData[1].id!: initialData[1]
           ]
           sut.pagedObject = pagedObject
           
@@ -190,7 +191,7 @@ final class GitHubUserListViewModelTests: AsyncSpec {
           sut.githubUsers = initialData
           sut.userMap = [
             initialData[0].id!: initialData[0],
-            initialData[1].id!: initialData[1],
+            initialData[1].id!: initialData[1]
           ]
           sut.pagedObject = pagedObject
           
@@ -201,3 +202,4 @@ final class GitHubUserListViewModelTests: AsyncSpec {
     }
   }
 }
+// swiftlint:enable function_body_length

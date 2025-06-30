@@ -10,8 +10,10 @@ import Quick
 import Nimble
 @testable import GitHubUsers
 
+// swiftlint:disable function_body_length
+// swiftlint:disable type_body_length
 final class GitHubUserDetailsViewModelTests: AsyncSpec {
-  override class func spec(){
+  override class func spec() {
     describe("GitHubUserDetailsViewModel") {
       var gitHubUsersAPI: GitHubUsersAPI!
       var githubUserService: MockedGitHubUserService!
@@ -144,7 +146,6 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
             language: "Java",
             stargazersCount: 21)
           
-          
           data3 = GitHubRepo(
             id: 3,
             name: "repo 3",
@@ -153,7 +154,6 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
             htmlUrl: "some html url 3",
             language: "Ruby",
             stargazersCount: 430)
-          
           
           data4 = GitHubRepo(
             id: 4,
@@ -164,7 +164,7 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
             language: "Swift",
             stargazersCount: 1253)
           
-          data = [data1,data2,data3,data4]
+          data = [data1, data2, data3, data4]
           
           pagedObject = PagedObject(from: headerLink, with: .initial(pageLimit: 1), currentUrl: "", results: data)
           
@@ -232,7 +232,6 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
             language: "Java",
             stargazersCount: 21)
           
-          
           data3 = GitHubRepo(
             id: 3,
             name: "repo 3",
@@ -241,7 +240,6 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
             htmlUrl: "some html url 3",
             language: "Ruby",
             stargazersCount: 430)
-          
           
           data4 = GitHubRepo(
             id: 4,
@@ -261,8 +259,8 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
             language: "Kotlin",
             stargazersCount: 5422)
           
-          initialRepos = [data1,data2]
-          data = [data3,data4,data5]
+          initialRepos = [data1, data2]
+          data = [data3, data4, data5]
           
           pagedObject = PagedObject(from: headerLink, with: .initial(pageLimit: 1), currentUrl: "", results: data)
           
@@ -278,7 +276,7 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
           sut.githubRepos = initialRepos
           sut.repoMap = [
             initialRepos[0].id!: initialRepos[0],
-            initialRepos[1].id!: initialRepos[1],
+            initialRepos[1].id!: initialRepos[1]
           ]
           sut.pagedObject = pagedObject
           
@@ -299,7 +297,7 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
           sut.githubRepos = initialRepos
           sut.repoMap = [
             initialRepos[0].id!: initialRepos[0],
-            initialRepos[1].id!: initialRepos[1],
+            initialRepos[1].id!: initialRepos[1]
           ]
           sut.pagedObject = pagedObject
           
@@ -311,3 +309,5 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
   }
   
 }
+// swiftlint:enable type_body_length
+// swiftlint:enable function_body_length

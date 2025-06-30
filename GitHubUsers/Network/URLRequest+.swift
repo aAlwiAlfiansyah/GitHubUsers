@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension URLRequest {
   public mutating func addHeaders(_ headers: [String: String?]) {
     for (key, value) in headers {

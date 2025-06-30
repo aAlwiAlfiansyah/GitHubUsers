@@ -11,12 +11,10 @@ protocol APICall {
   var path: String { get }
 }
 
-
 extension APICall {
   func createUrl(baseURL: String) -> URL? {
     return URL(string: baseURL + path)
   }
-  
   
   func createUrl<T>(baseURL: String, paginationState: PaginationState<T>) -> URL? {
     guard var url = createUrl(baseURL: baseURL) else { return nil }
@@ -43,8 +41,11 @@ extension APICall {
     return url
   }
   
-  
-  func createUrlRequest(baseURL: String, method: HTTPMethod, headers: [HTTPHeader]? = nil, body: Data? = nil) throws -> URLRequest {
+  func createUrlRequest(
+    baseURL: String,
+    method: HTTPMethod,
+    headers: [HTTPHeader]? = nil,
+    body: Data? = nil) throws -> URLRequest {
     guard let url = createUrl(baseURL: baseURL) else {
       throw HTTPError.invalidRequest
     }
@@ -52,8 +53,12 @@ extension APICall {
     return createUrlRequest(url: url, method: method, headers: headers, body: body)
   }
   
-  
-  func createUrlRequest<T>(baseURL: String, paginationState: PaginationState<T>, method: HTTPMethod, headers: [HTTPHeader]? = nil, body: Data? = nil) throws -> URLRequest {
+  func createUrlRequest<T>(
+    baseURL: String,
+    paginationState: PaginationState<T>,
+    method: HTTPMethod,
+    headers: [HTTPHeader]? = nil,
+    body: Data? = nil) throws -> URLRequest {
     guard let url = createUrl(baseURL: baseURL, paginationState: paginationState) else {
       throw HTTPError.invalidRequest
     }
@@ -61,8 +66,11 @@ extension APICall {
     return createUrlRequest(url: url, method: method, headers: headers, body: body)
   }
   
-  
-  private func createUrlRequest(url: URL, method: HTTPMethod, headers: [HTTPHeader]? = nil, body: Data? = nil) -> URLRequest {
+  private func createUrlRequest(
+    url: URL,
+    method: HTTPMethod,
+    headers: [HTTPHeader]? = nil,
+    body: Data? = nil) -> URLRequest {
     var request = URLRequest(url: url)
     request.httpMethod = method.rawValue
     if let headers = headers {

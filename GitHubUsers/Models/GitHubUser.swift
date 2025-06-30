@@ -35,7 +35,15 @@ public struct GitHubUser: Codable, Sendable, Hashable, Equatable {
   /// The number of following for this GitHub User resource
   public let following: Int?
   
-  init(id: Int?, login: String?, name: String?, avatarUrl: String?, reposUrl: String?, type: String?, followers: Int?, following: Int?) {
+  init(
+    id: Int?,
+    login: String?,
+    name: String?,
+    avatarUrl: String?,
+    reposUrl: String?,
+    type: String?,
+    followers: Int?,
+    following: Int?) {
     self.id = id
     self.login = login
     self.name = name

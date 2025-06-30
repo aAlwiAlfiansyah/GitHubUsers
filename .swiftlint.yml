@@ -1,0 +1,14 @@
+trailing_whitespace:
+  ignores_empty_lines: true
+line_length:
+  ignores_comments: true
+  warning: 125
+  error: 150
+identifier_name:
+  allowed_symbols: [_]
+  min_length:
+    warning: 3
+    error: 1
+large_tuple:
+  warning: 4
+  error: 5

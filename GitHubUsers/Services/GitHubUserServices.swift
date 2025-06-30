@@ -8,7 +8,9 @@
 import Foundation
 
 public protocol GHUGitHubUserService: HTTPWebService, Sendable {
-  func fetchUserList(paginationState: PaginationState<GitHubUser>) async throws -> PagedObject<GitHubUser>
+  func fetchUserList(
+    paginationState: PaginationState<GitHubUser>
+  ) async throws -> PagedObject<GitHubUser>
   func fetchUser(_ username: String) async throws -> GitHubUser
 }
 
@@ -41,15 +43,24 @@ public struct GitHubUserService: GHUGitHubUserService, Sendable {
   /**
    Fetch GitHub User list
    */
-  public func fetchUserList(paginationState: PaginationState<GitHubUser> = .initial(pageLimit: 30)) async throws -> PagedObject<GitHubUser> {
-    try await callPaginated(endpoint: API.fetchUserList, paginationState: paginationState, headers: setupDefaultHeader())
+  public func fetchUserList(
+    paginationState: PaginationState<GitHubUser> = .initial(pageLimit: 30)
+  ) async throws -> PagedObject<GitHubUser> {
+    try await callPaginated(
+      endpoint: API.fetchUserList,
+      paginationState: paginationState,
+      headers: setupDefaultHeader())
   }
   
   /**
    Fetch GitHub User details
    */
   public func fetchUser(_ username: String) async throws -> GitHubUser {
-    try await GitHubUser.decode(from: call(endpoint: API.fetchUserByUsername(username), headers: setupDefaultHeader()))
+    try await GitHubUser.decode(
+      from: call(
+        endpoint: API.fetchUserByUsername(username),
+        headers: setupDefaultHeader()
+      ))
   }
   
   /// Helper function for create a default http header for accept and auth bearer

@@ -33,8 +33,6 @@
 		C1727EA42E11B43700F8AFAB /* MockedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA32E11B43700F8AFAB /* MockedServices.swift */; };
 		C1727EA62E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA52E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift */; };
 		C17C4E712E0F93A2009D76F4 /* GitHubUsersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */; };
-		C17C4E732E0F93A2009D76F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E722E0F93A2009D76F4 /* ContentView.swift */; };
-		C17C4E752E0F93A2009D76F4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E742E0F93A2009D76F4 /* Item.swift */; };
 		C17C4E772E0F93A3009D76F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17C4E762E0F93A3009D76F4 /* Assets.xcassets */; };
 		C17C4E7A2E0F93A3009D76F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17C4E792E0F93A3009D76F4 /* Preview Assets.xcassets */; };
 		C17C4E842E0F93A4009D76F4 /* GitHubUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E832E0F93A4009D76F4 /* GitHubUsersTests.swift */; };
@@ -100,8 +98,6 @@
 		C1727EA52E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		C17C4E6D2E0F93A2009D76F4 /* GitHubUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUsersApp.swift; sourceTree = "<group>"; };
-		C17C4E722E0F93A2009D76F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C17C4E742E0F93A2009D76F4 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C17C4E762E0F93A3009D76F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C17C4E792E0F93A3009D76F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C17C4E7F2E0F93A4009D76F4 /* GitHubUsersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubUsersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -316,8 +312,6 @@
 				C1727E832E10626F00F8AFAB /* GitHubUserDetails */,
 				C1727E902E11478700F8AFAB /* Webviews */,
 				C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */,
-				C17C4E722E0F93A2009D76F4 /* ContentView.swift */,
-				C17C4E742E0F93A2009D76F4 /* Item.swift */,
 				C17C4E762E0F93A3009D76F4 /* Assets.xcassets */,
 				C17C4E782E0F93A3009D76F4 /* Preview Content */,
 			);
@@ -633,14 +627,12 @@
 				C17C4EB42E0FB9D2009D76F4 /* URL+Query.swift in Sources */,
 				C1727E682E0FE84C00F8AFAB /* HTTPWebService.swift in Sources */,
 				C17C4EBA2E0FBA61009D76F4 /* URLSession+Request.swift in Sources */,
-				C17C4E732E0F93A2009D76F4 /* ContentView.swift in Sources */,
 				C17C4EA82E0FAFD1009D76F4 /* APIConfig.generated.swift in Sources */,
 				C1727E8F2E10784500F8AFAB /* GitHubUserRepoListViewItem.swift in Sources */,
 				C1727E852E10629900F8AFAB /* GitHubUserDetailsViewModel.swift in Sources */,
 				C17C4EB22E0FB96D009D76F4 /* Decodable+Decode.swift in Sources */,
 				C17C4EB62E0FBA00009D76F4 /* URLRequest+.swift in Sources */,
 				C1727E742E0FF3CA00F8AFAB /* GitHubUserServices.swift in Sources */,
-				C17C4E752E0F93A2009D76F4 /* Item.swift in Sources */,
 				C1727E8D2E10738200F8AFAB /* GitHubUserRepoServices.swift in Sources */,
 				C1727E792E10039900F8AFAB /* GitHubUserListViewModel.swift in Sources */,
 				C17C4EB82E0FBA42009D76F4 /* URLResponse+.swift in Sources */,

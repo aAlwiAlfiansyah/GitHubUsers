@@ -8,9 +8,11 @@
 import Foundation
 
 public protocol GHUGitHubUserRepoService: HTTPWebService, Sendable {
-  func fetchUserRepoList(_ username: String, paginationState: PaginationState<GitHubRepo>) async throws -> PagedObject<GitHubRepo>
+  func fetchUserRepoList(
+    _ username: String,
+    paginationState: PaginationState<GitHubRepo>
+  ) async throws -> PagedObject<GitHubRepo>
 }
-
 
 // MARK: - Web Services
 
@@ -35,14 +37,18 @@ public struct GitHubUserRepoService: GHUGitHubUserRepoService, Sendable {
     self.session = session
   }
   
-  
   /**
    Fetch GitHub User list
    */
-  public func fetchUserRepoList(_ username: String, paginationState: PaginationState<GitHubRepo> = .initial(pageLimit: 30)) async throws -> PagedObject<GitHubRepo> {
-    try await callPaginated(endpoint: API.fetchUserRepoList(username), paginationState: paginationState, headers: setupDefaultHeader())
+  public func fetchUserRepoList(
+    _ username: String,
+    paginationState: PaginationState<GitHubRepo> = .initial(pageLimit: 30)
+  ) async throws -> PagedObject<GitHubRepo> {
+    try await callPaginated(
+      endpoint: API.fetchUserRepoList(username),
+      paginationState: paginationState,
+      headers: setupDefaultHeader())
   }
-  
   
   /// Helper function for create a default http header for accept and auth bearer
   private func setupDefaultHeader() -> [HTTPHeader] {

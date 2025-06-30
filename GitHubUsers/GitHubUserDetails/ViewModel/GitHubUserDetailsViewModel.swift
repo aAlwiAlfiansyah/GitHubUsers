@@ -50,7 +50,9 @@ class GitHubUserDetailsViewModel: ObservableObject {
         self.repoMap = [:]
       }
       
-      self.pagedObject = try await gitHubUsersAPI.githubUserRepoService.fetchUserRepoList(githubUser.login!, paginationState: .initial(pageLimit: 30))
+      self.pagedObject = try await gitHubUsersAPI.githubUserRepoService.fetchUserRepoList(
+        githubUser.login!,
+        paginationState: .initial(pageLimit: 30))
       
       if let pagedObject = self.pagedObject, let listResult = pagedObject.results {
         for repoResourse in listResult {
@@ -79,7 +81,9 @@ class GitHubUserDetailsViewModel: ObservableObject {
       guard let pagedObject = self.pagedObject else { return }
       guard pagedObject.hasNext else { return }
       
-      self.pagedObject = try await gitHubUsersAPI.githubUserRepoService.fetchUserRepoList(githubUser.login!, paginationState: .continuing(pagedObject, .next))
+      self.pagedObject = try await gitHubUsersAPI.githubUserRepoService.fetchUserRepoList(
+        githubUser.login!,
+        paginationState: .continuing(pagedObject, .next))
       
       guard let pagedObject = self.pagedObject else { return }
       
@@ -104,4 +108,3 @@ class GitHubUserDetailsViewModel: ObservableObject {
   }
   
 }
-

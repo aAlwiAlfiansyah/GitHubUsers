@@ -12,8 +12,8 @@ import Nimble
 @testable import GitHubUsers
 
 final class StringExtensionsTests: QuickSpec {
-
-  override class func spec(){
+  
+  override class func spec() {
     describe("String Class") {
       describe("deletingPrefix") {
         it("should return the correct value") {
@@ -25,5 +25,5 @@ final class StringExtensionsTests: QuickSpec {
       }
     }
   }
-
+  
 }

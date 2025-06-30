@@ -42,7 +42,6 @@ struct GitHubUserDetailsView: View {
       .frame(minWidth: 0, maxWidth: .infinity)
       .background(Color.gray.opacity(0.3))
       
-      
       ScrollView {
         LazyVStack {
           ForEach(viewModel.githubRepos.compactMap { $0 }, id: \.id) { item in
@@ -145,7 +144,7 @@ struct GitHubUserDetailsView: View {
         return
       }
       
-      // TODO: fix hard code 0.8
+      // Currently, it's hard-coded to 0.8
       if let loadMoreViewHeight {
         if bottomOffset <= loadMoreViewHeight * 0.8 && topOffset >= 0 {
           loading = true
