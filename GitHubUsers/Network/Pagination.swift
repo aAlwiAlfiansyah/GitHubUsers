@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// The state of a paginated web service call.
 public enum PaginationState<T>: Sendable where T: Sendable {
   /// Required state the first time you call the paginated web service.
@@ -16,7 +15,6 @@ public enum PaginationState<T>: Sendable where T: Sendable {
   case continuing(PagedObject<T>, PaginationRelationship)
 }
 
-
 /// Public enum representing the different positions for pagination relative to the last fetch
 public enum PaginationRelationship: Sendable {
   case first
@@ -24,7 +22,6 @@ public enum PaginationRelationship: Sendable {
   case next
   case previous
 }
-
 
 /// Paged Object
 public struct PagedObject<T>: Codable, Sendable where T: Sendable {
@@ -83,9 +80,7 @@ public struct PagedObject<T>: Codable, Sendable where T: Sendable {
     return !lastValue.isEmpty
   }
   
-  
   // MARK: - Init
-  
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.first = try container.decodeIfPresent(String.self, forKey: .first)
@@ -98,34 +93,35 @@ public struct PagedObject<T>: Codable, Sendable where T: Sendable {
     current = ""
   }
   
-  
-  public init(from headerLink: HTTPResponseHeaderLink?, with paginationState: PaginationState<T>, currentUrl: String, results: [T]) {
-    
-    if let headerLink = headerLink {
-      first = headerLink.retrieveFirstLink()
-      last = headerLink.retrieveLastLink()
-      next = headerLink.retrieveNextLink()
-      previous = headerLink.retrievePrevLink()
-    } else {
-      first = nil
-      last = nil
-      next = nil
-      previous = nil
+  public init(
+    from headerLink: HTTPResponseHeaderLink?,
+    with paginationState: PaginationState<T>,
+    currentUrl: String,
+    results: [T]) {
+      
+      if let headerLink = headerLink {
+        first = headerLink.retrieveFirstLink()
+        last = headerLink.retrieveLastLink()
+        next = headerLink.retrieveNextLink()
+        previous = headerLink.retrievePrevLink()
+      } else {
+        first = nil
+        last = nil
+        next = nil
+        previous = nil
+      }
+      
+      self.results = results
+      
+      switch paginationState {
+      case .initial(let newLimit):
+        limit = newLimit
+      case .continuing(let pagedObject, _):
+        limit = pagedObject.limit
+      }
+      
+      current = currentUrl
     }
-    
-    
-    self.results = results
-    
-    switch paginationState {
-    case .initial(let newLimit):
-      limit = newLimit
-    case .continuing(let pagedObject, _):
-      limit = pagedObject.limit
-    }
-    
-    current = currentUrl
-  }
-  
   
   /// Returns the url string of a current relationship if it exists
   public func getPageLink(for relationship: PaginationRelationship) -> String? {

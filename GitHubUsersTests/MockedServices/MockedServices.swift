@@ -14,11 +14,11 @@ class MockURLProtocol: URLProtocol {
   static func reset() {
     mockResponses = [:]
   }
-
+  
   override class func canInit(with request: URLRequest) -> Bool {
     return true
   }
-
+  
   override class func canonicalRequest(for request: URLRequest) -> URLRequest {
     return request
   }
@@ -43,7 +43,7 @@ class MockURLProtocol: URLProtocol {
       client?.urlProtocolDidFinishLoading(self)
     }
   }
-
+  
   override func stopLoading() {}
 }
 
@@ -91,7 +91,7 @@ struct MockedGitHubUserService: GHUGitHubUserService {
     if let error = mockError {
       throw error
     }
-
+    
     return GitHubUser(
       id: nil,
       login: nil,
@@ -128,7 +128,10 @@ struct MockedGitHubUserRepoService: GHUGitHubUserRepoService {
   var mockUrlSession: URLSession?
   var mockBaseURL: String?
   
-  func fetchUserRepoList(_ username: String, paginationState: PaginationState<GitHubRepo>) async throws -> PagedObject<GitHubRepo> {
+  func fetchUserRepoList(
+    _ username: String,
+    paginationState: PaginationState<GitHubRepo>
+  ) async throws -> PagedObject<GitHubRepo> {
     
     if let pagedObject = mockPagedObject {
       return pagedObject

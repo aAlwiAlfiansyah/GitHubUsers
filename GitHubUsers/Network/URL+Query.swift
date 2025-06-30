@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// swiftlint:disable identifier_name
 extension URL {
   /// Adds a key-value parameter to the end of the url string, like "key=value", or removes the parameter if the value is nil.
   /// - parameter key: A query parameter key
@@ -27,21 +27,17 @@ extension URL {
       if let v = value {
         matchedItems.reversed().forEach { queryItems.remove(at: $0.offset) }
         queryItems.append(URLQueryItem(name: key, value: v))
-      }
-      else {
+      } else {
         matchedItems.reversed().forEach { queryItems.remove(at: $0.offset) }
       }
-    }
-    else if let item = matchedItems.first {
+    } else if let item = matchedItems.first {
       if let v = value {
         queryItems[item.offset] = URLQueryItem(name: key, value: v)
-      }
-      else {
+      } else {
         // remove if value is nil
         queryItems.remove(at: item.offset)
       }
-    }
-    else if let v = value {
+    } else if let v = value {
       // key doesn't exist, add to url
       queryItems.append(URLQueryItem(name: key, value: v))
     }
@@ -50,7 +46,6 @@ extension URL {
     
     self = components.url!
   }
-  
   
   /// Adds key-value parameters to the end of the url string, like "key=value"
   /// - parameter parameters: A dictionary of key-value pairs that will be appended to the url
@@ -61,23 +56,24 @@ extension URL {
     }
   }
   
-  
   /// Removes a key-value parameter pair for a matching key
   /// - parameter key: A key matching a query parameter key in a url
   public mutating func removeQueryParameter(_ key: String) {
     self.appendQueryParameter(key: key, value: nil)
   }
   
-  
   /// Compares components, which doesn't require query parameters to be in any particular order
   public func compareComponents(_ url: URL) -> Bool {
     guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false),
           let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return false }
     
+    // swiftlint:disable line_length
     return components.scheme == urlComponents.scheme &&
     components.host == urlComponents.host &&
     components.path == urlComponents.path &&
     components.queryItems?.enumerated().compactMap { $0.element.name }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.name }.sorted() &&
     components.queryItems?.enumerated().compactMap { $0.element.value }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.value }.sorted()
+    // swiftlint:enable line_length
   }
 }
+// swiftlint:enable identifier_name

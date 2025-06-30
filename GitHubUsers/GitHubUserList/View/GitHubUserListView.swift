@@ -27,7 +27,6 @@ struct GitHubUserListView: View {
   
   // Scroll position item id
   @State var dataID: Int?
-
   
   var body: some View {
     NavigationStack {
@@ -99,9 +98,11 @@ struct GitHubUserListView: View {
       .navigationDestination(for: GitHubUser.self) { [weak viewModel] user in
         
         if let gitHubUsersAPI = viewModel?.gitHubUsersAPI {
-          let vm = GitHubUserDetailsViewModel(githubUser: user, gitHubUsersAPI: gitHubUsersAPI)
+          let viewModel = GitHubUserDetailsViewModel(
+            githubUser: user,
+            gitHubUsersAPI: gitHubUsersAPI)
           
-          GitHubUserDetailsView(viewModel: vm)
+          GitHubUserDetailsView(viewModel: viewModel)
         }
       }
     }
@@ -132,7 +133,7 @@ struct GitHubUserListView: View {
       
       if loading { return }
       
-      // TODO: fix hard code 0.8
+      // Currently, it's hard-coded to 0.8
       if let loadMoreViewHeight {
         if bottomOffset <= loadMoreViewHeight * 0.8 && topOffset >= 0 {
           loading = true
