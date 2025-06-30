@@ -58,7 +58,7 @@ struct GitHubUserListView: View {
       }
       .scrollPosition(id: $dataID)
       .coordinateSpace(name: COORDINATE_SPACE)
-      .navigationTitle("GitLab User List")
+      .navigationTitle("GitHub User List")
       .navigationBarTitleDisplayMode(.inline)
       .overlay(alignment: .bottom) {
         // Loading indicator
