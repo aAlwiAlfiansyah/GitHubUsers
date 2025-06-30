@@ -102,7 +102,7 @@ struct GitHubUserDetailsView: View {
       
       Spacer()
     }
-    .navigationTitle("GitLab User Details")
+    .navigationTitle("GitHub User Details")
     .navigationBarTitleDisplayMode(.inline)
     .navigationDestination(for: GitHubRepo.self) { repo in
       
