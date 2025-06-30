@@ -77,14 +77,16 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
       - name: Build
-        uses: yukiarrr/ios-build-action@v1.12.0
-        with:
-          project-path: GitHubUsers.xcodeproj
-          export-method: development
-          configuration: Debug
-          build-sdk: iOS 17.2
-          build-destination: generic/platform=iOS
-          workspace-path: GitHubUsers.xcworkspace
+        env:
+          scheme: ${{ 'default' }}
+          platform: ${{ 'iOS Simulator' }}
+        run: |
+          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
+          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
+          if [ $scheme = default ]; then scheme=$(cat default); fi
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          xcodebuild build-for-running -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
 
   SwiftLint:
     name: Run SwiftLint
