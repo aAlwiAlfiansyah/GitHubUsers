@@ -80,6 +80,7 @@ cd GitHubUsers
 3. Prepare env-vars.sh:
 ```bash
 cp env-vars.sh.template env-vars.sh
+chmod +x env-vars.sh
 ```
 
 3. Update `GITHUB_ACCESS_TOKEN` ENV variable value in env-vars.sh to your GitHub Personal Access Token.
