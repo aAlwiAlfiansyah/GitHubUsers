@@ -54,3 +54,21 @@ public struct GitHubUser: Codable, Sendable, Hashable, Equatable {
     self.following = following
   }
 }
+
+public struct GitHubUserSearch: Codable, Sendable, Hashable, Equatable {
+  
+  /// The total number of GitHub User resource in the search result
+  public let totalCount: Int?
+  
+  /// The incomplete results status in the search result
+  public let incompleteResults: Bool?
+  
+  /// The GitHub User search list items
+  public let items: [GitHubUser]?
+  
+  init(totalCount: Int?, incompleteResults: Bool?, items: [GitHubUser]?) {
+    self.totalCount = totalCount
+    self.incompleteResults = incompleteResults
+    self.items = items
+  }
+}

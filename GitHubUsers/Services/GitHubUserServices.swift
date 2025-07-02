@@ -12,6 +12,10 @@ public protocol GHUGitHubUserService: HTTPWebService, Sendable {
     paginationState: PaginationState<GitHubUser>
   ) async throws -> PagedObject<GitHubUser>
   func fetchUser(_ username: String) async throws -> GitHubUser
+  func searchUserListByUsername(
+    _ username: String,
+    paginationState: PaginationState<GitHubUserSearch>
+  ) async throws -> (PagedObject<GitHubUserSearch>, GitHubUserSearch)
 }
 
 // MARK: - Web Services
@@ -20,6 +24,7 @@ public struct GitHubUserService: GHUGitHubUserService, Sendable {
   public enum API: APICall {
     case fetchUserList
     case fetchUserByUsername(String)
+    case searchUserByUsername(String)
     
     var path: String {
       switch self {
@@ -27,6 +32,8 @@ public struct GitHubUserService: GHUGitHubUserService, Sendable {
         return "/users"
       case .fetchUserByUsername(let name):
         return "/users/\(name)"
+      case .searchUserByUsername(let username):
+        return "/search/users?q=\(username)+type%3Auser+in%3Alogin"
       }
     }
   }
@@ -61,6 +68,20 @@ public struct GitHubUserService: GHUGitHubUserService, Sendable {
         endpoint: API.fetchUserByUsername(username),
         headers: setupDefaultHeader()
       ))
+  }
+  
+  /**
+   Search GitHub User list by username
+   */
+  public func searchUserListByUsername(
+    _ username: String,
+    paginationState: PaginationState<GitHubUserSearch> = .initial(pageLimit: 30)
+  ) async throws -> (PagedObject<GitHubUserSearch>, GitHubUserSearch) {
+    
+    try await callSinglePaginated(
+      endpoint: API.searchUserByUsername(username),
+      paginationState: paginationState,
+      headers: setupDefaultHeader())
   }
   
   /// Helper function for create a default http header for accept and auth bearer
