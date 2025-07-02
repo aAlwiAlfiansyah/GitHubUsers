@@ -1,5 +1,5 @@
 //
-//  GitHubUser.swift
+//  GitHubUserService.swift
 //  GitHubUsers
 //
 //  Created by Alwi Alfiansyah Ramdan on 28/06/25.
