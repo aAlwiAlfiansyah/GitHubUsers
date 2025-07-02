@@ -112,7 +112,7 @@ struct GitHubUserListView: View {
           }
         }
       }
-      .navigationDestination(for: String.self) { [weak viewModel] text in
+      .navigationDestination(for: String.self) { [weak viewModel] _ in
         
         if let gitHubUsersAPI = viewModel?.gitHubUsersAPI {
           let nextViewModel = GitHubUserSearchViewModel(githubUsersAPI: gitHubUsersAPI)

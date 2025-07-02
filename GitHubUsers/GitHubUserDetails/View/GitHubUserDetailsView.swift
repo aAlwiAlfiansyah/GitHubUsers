@@ -113,7 +113,10 @@ struct GitHubUserDetailsView: View {
           }
         }
       }
-      .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Fetched GitHub Repo")
+      .searchable(
+        text: $searchTerm,
+        placement: .navigationBarDrawer(displayMode: .always),
+        prompt: "Search Fetched GitHub Repo")
       
       Spacer()
     }
@@ -125,7 +128,7 @@ struct GitHubUserDetailsView: View {
         WebView(url: repoHtml)
       }
     }
-    .navigationDestination(for: Int.self) { [weak viewModel] user in
+    .navigationDestination(for: Int.self) { [weak viewModel] _ in
       
       if let userHtml = viewModel?.githubUser.htmlUrl {
         WebView(url: userHtml)

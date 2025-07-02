@@ -47,8 +47,7 @@ class MockURLProtocol: URLProtocol {
       }
       
       client?.urlProtocolDidFinishLoading(self)
-    }
-    else {
+    } else {
       // MockResponse is not available, so we just throw error
       
       self.client?.urlProtocol(self, didFailWithError: MockError.requestBlocked)
