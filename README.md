@@ -6,11 +6,14 @@ A simple and clean SwiftUI-based iOS application to browse GitHub users and GitH
 ## 🚀 Features
 - The app will show the first 30 GitHub users, containing the user avatar and username
 - Upon scrolling to the bottom, the app will fetch and append the next 30 GitHub users into the list
+- Search feature with pagination for GitHub users by GitHub username in the GitHub Users Search page
 - Upon clicking the GitHub user in the list, it will show the GitHub user details page
 - The GitHub user details page will show the user avatar, username, full name, number of followers, and number of following
   - At the bottom of the GitHub user details information, the app will show the first 30 user's GitHub repositories
   - The item in user's GitHub repositories list will show the repository name, its programming language, the number of stargazers and the repository description if any
   - Upon scrolling to the bottom of the user's GitHub repositories list, the app will fetch and append the next 30 GitHub user's repositories into the list
+  - Search feature for GitHub featched repositories list in the GitHub user details page
+- Upon clicking the GitHub user details information, the app will open webview to the user GitHub webpage
 - Upon clicking one of the repository in the user's GitHub repositories list, the app will open webview to the repository GitHub webpage
 - Smooth and responsive UI with loading indicators and error handling.
 
@@ -23,7 +26,9 @@ A simple and clean SwiftUI-based iOS application to browse GitHub users and GitH
 - **Architecture**: MVVM (Model-View-ViewModel)
 - **UI**: SwiftUI
 - **Networking**: URLSession
-- **Dependency Management**: Swift Package Manager for in-app dependencies and CocoaPods for secret file generator and GitHub workflow pipelines
+- **Dependency Management**: Swift Package Manager for in-app dependencies and Bundler and CocoaPods for secret file generator and GitHub workflow pipelines
+- **Linters**: Swiftlint
+- **CI/CD Pipelines**: GitHub Workflow Actions for linting using Swiftlint, Testing and Building the project using xcodebuild
 
 ---
 
@@ -48,7 +53,7 @@ GitHubUsersTests/
 ├── MockedServices # List of mocked classes from Services and Networks components
 ├── Utilities # List of unit tests classes for Utilities components
 ├── ViewModel # List of unit tests classes for ViewModel components
-├── Services # List of unit tests classes for Services and Network components
+└── Services # List of unit tests classes for Services and Network components
 
 GitHubUsersUITests/ # UI tests for the project
 
@@ -180,6 +185,22 @@ Here's a demo of the app in action:
 <summary>Click to show/hide a demo GIF</summary>
 
 ![Demo](Resources/GitHubUsers_Demo.gif)
+
+</details>
+
+<details>
+
+<summary>Click to show/hide a GitHub User Search feature Demo</summary>
+
+![Demo](Resources/GitHubUsers_User_Search.gif)
+
+</details>
+
+<details>
+
+<summary>Click to show/hide a GitHub Repo Search and Webview feature Demo in User Details page</summary>
+
+![Demo](Resources/GitHubUsers_Repo_Search_User_Details.gif)
 
 </details>
 

@@ -34,6 +34,7 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
           name: nil,
           avatarUrl: "some avatar",
           reposUrl: nil,
+          htmlUrl: nil,
           type: nil,
           followers: nil,
           following: nil)
@@ -66,6 +67,7 @@ final class GitHubUserDetailsViewModelTests: AsyncSpec {
             name: "adul adul",
             avatarUrl: "some avatar",
             reposUrl: "some repo url",
+            htmlUrl: "some html url",
             type: "User",
             followers: 20,
             following: 3)

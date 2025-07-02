@@ -98,11 +98,26 @@ struct GitHubUserListView: View {
       .navigationDestination(for: GitHubUser.self) { [weak viewModel] user in
         
         if let gitHubUsersAPI = viewModel?.gitHubUsersAPI {
-          let viewModel = GitHubUserDetailsViewModel(
+          let nextViewModel = GitHubUserDetailsViewModel(
             githubUser: user,
             gitHubUsersAPI: gitHubUsersAPI)
           
-          GitHubUserDetailsView(viewModel: viewModel)
+          GitHubUserDetailsView(viewModel: nextViewModel)
+        }
+      }
+      .toolbar {
+        ToolbarItem {
+          NavigationLink(value: "Search") {
+            Image(systemName: "magnifyingglass")
+          }
+        }
+      }
+      .navigationDestination(for: String.self) { [weak viewModel] _ in
+        
+        if let gitHubUsersAPI = viewModel?.gitHubUsersAPI {
+          let nextViewModel = GitHubUserSearchViewModel(githubUsersAPI: gitHubUsersAPI)
+          
+          GitHubUserSearchView(viewModel: nextViewModel)
         }
       }
     }

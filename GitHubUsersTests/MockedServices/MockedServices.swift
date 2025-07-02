@@ -47,8 +47,7 @@ class MockURLProtocol: URLProtocol {
       }
       
       client?.urlProtocolDidFinishLoading(self)
-    }
-    else {
+    } else {
       // MockResponse is not available, so we just throw error
       
       self.client?.urlProtocol(self, didFailWithError: MockError.requestBlocked)
@@ -80,6 +79,8 @@ struct MockedGitHubUserService: GHUGitHubUserService {
   
   var mockGitHubUser: GitHubUser?
   var mockPagedObject: PagedObject<GitHubUser>?
+  var mockGitHubUserSearch: GitHubUserSearch?
+  var mockSearchPagedObject: PagedObject<GitHubUserSearch>?
   var mockError: Error?
   var mockUrlSession: URLSession?
   var mockBaseURL: String?
@@ -111,9 +112,36 @@ struct MockedGitHubUserService: GHUGitHubUserService {
       name: nil,
       avatarUrl: nil,
       reposUrl: nil,
+      htmlUrl: nil,
       type: nil,
       followers: nil,
       following: nil)
+  }
+  
+  func searchUserListByUsername(
+    _ username: String,
+    paginationState: PaginationState<GitHubUserSearch>
+  ) async throws -> (PagedObject<GitHubUserSearch>, GitHubUserSearch) {
+    
+    if let pagedObject = mockSearchPagedObject, let searchResult = mockGitHubUserSearch {
+      return (pagedObject, searchResult)
+    }
+    
+    if let error = mockError {
+      throw error
+    }
+    
+    let gitHubSearch = GitHubUserSearch(
+      totalCount: 0,
+      incompleteResults: true,
+      items: [])
+    let pagedSearchObject = PagedObject<GitHubUserSearch>(
+      from: nil,
+      with: .initial(pageLimit: 1),
+      currentUrl: "",
+      results: [])
+    
+    return (pagedSearchObject, gitHubSearch)
   }
   
 }
