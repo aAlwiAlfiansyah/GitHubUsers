@@ -9,6 +9,10 @@ import Foundation
 @testable import GitHubUsers
 
 class MockURLProtocol: URLProtocol {
+  enum MockError: Swift.Error {
+    case requestBlocked
+  }
+
   static var mockResponses: [URL: (data: Data?, response: URLResponse?, error: Error?)] = [:]
   
   static func reset() {
@@ -27,7 +31,9 @@ class MockURLProtocol: URLProtocol {
     if let url = request.url,
        let mockResponse = MockURLProtocol.mockResponses[url] {
       if let responseError = mockResponse.error {
-        client?.urlProtocol(self, didFailWithError: responseError)
+        // Embed custom error in userInfo[NSUnderlyingErrorKey], to be extracted later
+        let failure = NSError(domain: NSURLErrorDomain, code: 1, userInfo: [NSUnderlyingErrorKey: responseError])
+        client?.urlProtocol(self, didFailWithError: failure)
         client?.urlProtocolDidFinishLoading(self)
         return
       }
@@ -42,6 +48,13 @@ class MockURLProtocol: URLProtocol {
       
       client?.urlProtocolDidFinishLoading(self)
     }
+    else {
+      // MockResponse is not available, so we just throw error
+      
+      self.client?.urlProtocol(self, didFailWithError: MockError.requestBlocked)
+      self.client?.urlProtocolDidFinishLoading(self)
+    }
+      
   }
   
   override func stopLoading() {}
