@@ -26,7 +26,9 @@ A simple and clean SwiftUI-based iOS application to browse GitHub users and GitH
 - **Architecture**: MVVM (Model-View-ViewModel)
 - **UI**: SwiftUI
 - **Networking**: URLSession
-- **Dependency Management**: Swift Package Manager for in-app dependencies and CocoaPods for secret file generator and GitHub workflow pipelines
+- **Dependency Management**: Swift Package Manager for in-app dependencies and Bundler and CocoaPods for secret file generator and GitHub workflow pipelines
+- **Linters**: Swiftlint
+- **CI/CD Pipelines**: GitHub Workflow Actions for linting using Swiftlint, Testing and Building the project using xcodebuild
 
 ---
 
