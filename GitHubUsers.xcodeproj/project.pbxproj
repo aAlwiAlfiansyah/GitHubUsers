@@ -33,6 +33,7 @@
 		C1727EA42E11B43700F8AFAB /* MockedServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA32E11B43700F8AFAB /* MockedServices.swift */; };
 		C1727EA62E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA52E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift */; };
 		C1727EA92E15083400F8AFAB /* GitHubUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EA82E15083400F8AFAB /* GitHubUserServiceTests.swift */; };
+		C1727EAC2E15486C00F8AFAB /* GitHubUserRepoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1727EAB2E15486C00F8AFAB /* GitHubUserRepoServiceTests.swift */; };
 		C17C4E712E0F93A2009D76F4 /* GitHubUsersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */; };
 		C17C4E772E0F93A3009D76F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17C4E762E0F93A3009D76F4 /* Assets.xcassets */; };
 		C17C4E7A2E0F93A3009D76F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17C4E792E0F93A3009D76F4 /* Preview Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		C1727EA32E11B43700F8AFAB /* MockedServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedServices.swift; sourceTree = "<group>"; };
 		C1727EA52E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		C1727EA82E15083400F8AFAB /* GitHubUserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserServiceTests.swift; sourceTree = "<group>"; };
+		C1727EAB2E15486C00F8AFAB /* GitHubUserRepoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserRepoServiceTests.swift; sourceTree = "<group>"; };
 		C17C4E6D2E0F93A2009D76F4 /* GitHubUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17C4E702E0F93A2009D76F4 /* GitHubUsersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUsersApp.swift; sourceTree = "<group>"; };
 		C17C4E762E0F93A3009D76F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				C1727EA82E15083400F8AFAB /* GitHubUserServiceTests.swift */,
+				C1727EAB2E15486C00F8AFAB /* GitHubUserRepoServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1727EA62E11CAC700F8AFAB /* GitHubUserDetailsViewModelTests.swift in Sources */,
+				C1727EAC2E15486C00F8AFAB /* GitHubUserRepoServiceTests.swift in Sources */,
 				C1727EA12E11B15200F8AFAB /* GitHubUserListViewModelTests.swift in Sources */,
 				C1727E9E2E11AAC400F8AFAB /* StringExtensionsTests.swift in Sources */,
 				C1727EA42E11B43700F8AFAB /* MockedServices.swift in Sources */,
