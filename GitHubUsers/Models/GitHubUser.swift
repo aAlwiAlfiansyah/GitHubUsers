@@ -25,6 +25,9 @@ public struct GitHubUser: Codable, Sendable, Hashable, Equatable {
   
   /// The repositories URL for this GitHub User resource
   public let reposUrl: String?
+  
+  /// The user URL for this GitHub User resource
+  public let htmlUrl: String?
 
   /// The type for this GitHub User resource
   public let type: String?
@@ -41,6 +44,7 @@ public struct GitHubUser: Codable, Sendable, Hashable, Equatable {
     name: String?,
     avatarUrl: String?,
     reposUrl: String?,
+    htmlUrl: String?,
     type: String?,
     followers: Int?,
     following: Int?) {
@@ -49,6 +53,7 @@ public struct GitHubUser: Codable, Sendable, Hashable, Equatable {
     self.name = name
     self.avatarUrl = avatarUrl
     self.reposUrl = reposUrl
+    self.htmlUrl = htmlUrl
     self.type = type
     self.followers = followers
     self.following = following

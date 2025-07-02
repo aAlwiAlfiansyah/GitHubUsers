@@ -94,6 +94,7 @@ struct GitHubUserInfoView: View {
     name: "Alwi Alfiansyah Ramdan",
     avatarUrl: "https://avatars.githubusercontent.com/u/1?v=4",
     reposUrl: "https://api.github.com/users/aAlwiAlfiansyah/repos",
+    htmlUrl: "https://github.com/aAlwiAlfiansyah",
     type: "User",
     followers: 56,
     following: 12

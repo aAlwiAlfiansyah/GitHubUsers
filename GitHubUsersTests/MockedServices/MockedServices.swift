@@ -113,6 +113,7 @@ struct MockedGitHubUserService: GHUGitHubUserService {
       name: nil,
       avatarUrl: nil,
       reposUrl: nil,
+      htmlUrl: nil,
       type: nil,
       followers: nil,
       following: nil)

@@ -73,6 +73,7 @@ final class GitHubUserSearchViewModelTests: AsyncSpec {
               name: "adul adul",
               avatarUrl: nil,
               reposUrl: nil,
+              htmlUrl: nil,
               type: nil,
               followers: nil,
               following: nil),
@@ -82,6 +83,7 @@ final class GitHubUserSearchViewModelTests: AsyncSpec {
               name: "adul mage",
               avatarUrl: nil,
               reposUrl: nil,
+              htmlUrl: nil,
               type: nil,
               followers: nil,
               following: nil)
@@ -150,6 +152,7 @@ final class GitHubUserSearchViewModelTests: AsyncSpec {
               name: "adul adul",
               avatarUrl: nil,
               reposUrl: nil,
+              htmlUrl: nil,
               type: nil,
               followers: nil,
               following: nil),
@@ -159,6 +162,7 @@ final class GitHubUserSearchViewModelTests: AsyncSpec {
               name: "mike shinoda",
               avatarUrl: nil,
               reposUrl: nil,
+              htmlUrl: nil,
               type: nil,
               followers: nil,
               following: nil)
@@ -171,6 +175,7 @@ final class GitHubUserSearchViewModelTests: AsyncSpec {
               name: "dude marco",
               avatarUrl: nil,
               reposUrl: nil,
+              htmlUrl: nil,
               type: nil,
               followers: nil,
               following: nil),
@@ -180,6 +185,7 @@ final class GitHubUserSearchViewModelTests: AsyncSpec {
               name: "dude ceena",
               avatarUrl: nil,
               reposUrl: nil,
+              htmlUrl: nil,
               type: nil,
               followers: nil,
               following: nil)
