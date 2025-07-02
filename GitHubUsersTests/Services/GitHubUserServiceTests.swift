@@ -10,8 +10,7 @@ import Quick
 import Nimble
 @testable import GitHubUsers
 
-// swiftlint:disable function_body_length
-// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length type_body_length file_length
 final class GitHubUserServiceTests: AsyncSpec {
   
   override class func spec() {
@@ -292,8 +291,222 @@ final class GitHubUserServiceTests: AsyncSpec {
           }
         }
       }
+      
+      describe("searchUserListByUsername") {
+        context("when the request is successful") {
+          var searchTerm: String!
+          
+          var username1: String!
+          var userId1: Int!
+          var avatar1: String!
+          var userHtmlUrl1: String!
+          var userRepoUrl1: String!
+          var userFullName1: String!
+          var followers1: Int!
+          var following1: Int!
+          
+          var username2: String!
+          var userId2: Int!
+          var avatar2: String!
+          var userHtmlUrl2: String!
+          var userRepoUrl2: String!
+          var userFullName2: String!
+          var followers2: Int!
+          var following2: Int!
+          
+          var responseJson: String!
+          var nextUrlString: String!
+          var lastUrlString: String!
+          var firstUrlString: String!
+          
+          var url: URL!
+          var responseHeader: [String: String]!
+          
+          beforeEach {
+            searchTerm = "dude"
+            
+            username1 = "dudechang"
+            userId1 = 1
+            avatar1 = "https://avatars.githubusercontent.com/u/\(userId1!)?v=4"
+            userHtmlUrl1 = "https://github.com/\(username1!)"
+            userRepoUrl1 = "https://api.github.com/users/\(username1!)/repos"
+            userFullName1 = "Mojombo Real Name"
+            followers1 = 9
+            following1 = 3
+            
+            username2 = "dudeherlino"
+            userId2 = 3
+            avatar2 = "https://avatars.githubusercontent.com/u/\(userId2!)?v=4"
+            userHtmlUrl2 = "https://github.com/\(username2!)"
+            userRepoUrl2 = "https://api.github.com/users/\(username2!)/repos"
+            userFullName2 = "pjhyett Real Name"
+            followers2 = 9
+            following2 = 3
+            
+            responseJson = """
+            {
+              "total_count": 3883,
+              "incomplete_results": false,
+              "items": [
+              {
+                "login": "\(username1!)",
+                "id": \(userId1!),
+                "avatar_url": "\(avatar1!)",
+                "url": "https://api.github.com/users/\(username1!)",
+                "html_url": "\(userHtmlUrl1!)",
+                "repos_url": "\(userRepoUrl1!)",
+                "type": "User",
+                "name": "\(userFullName1!)",
+                "public_repos": 9,
+                "public_gists": 0,
+                "followers": \(followers1!),
+                "following": \(following1!)
+              },
+              {
+                "login": "\(username2!)",
+                "id": \(userId2!),
+                "avatar_url": "\(avatar2!)",
+                "url": "https://api.github.com/users/\(username2!)",
+                "html_url": "\(userHtmlUrl2!)",
+                "repos_url": "\(userRepoUrl2!)",
+                "type": "User",
+                "name": "\(userFullName2!)",
+                "public_repos": 9,
+                "public_gists": 0,
+                "followers": \(followers2!),
+                "following": \(following2!)
+              }
+            ]}
+            """
+            
+            nextUrlString = "\(sut.baseURL)/search/users?q=\(searchTerm!)+type:user+in:login&page=2&per_page=30"
+            lastUrlString = "\(sut.baseURL)/search/users?q=\(searchTerm!)+type:user+in:login&page=30&per_page=30"
+            firstUrlString = "\(sut.baseURL)/search/users?q=\(searchTerm!)+type:user+in:login&page=1&per_page=30"
+            
+            url = URL(string: "\(sut.baseURL)/search/users?q=\(searchTerm!)+type:user+in:login&per_page=30")!
+            
+            responseHeader = [
+              "Link": """
+                <\(nextUrlString!)>; rel="next", <\(firstUrlString!)>; rel="first, <\(lastUrlString!)>; rel="last"
+              """
+            ]
+          }
+          
+          it("should return correct GitHubUser array for initial fetch") {
+            let responseData = responseJson.data(using: .utf8)!
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: responseHeader)
+            MockURLProtocol.reset()
+            
+            MockURLProtocol.mockResponses[url] = (data: responseData, response: response, error: nil)
+            
+            let (pagedObject, searchResult) = try await sut.searchUserListByUsername(searchTerm)
+            
+            expect(searchResult.items?.count).to(equal(2))
+            expect(pagedObject.hasNext).to(beTrue())
+            expect(pagedObject.hasLast).to(beTrue())
+            expect(pagedObject.hasPrevious).to(beFalse())
+            expect(pagedObject.first).toNot(beNil())
+            expect(pagedObject.next).toNot(beNil())
+            expect(pagedObject.last).toNot(beNil())
+            expect(pagedObject.previous).to(beEmpty())
+            
+            if let list = searchResult.items, list.count > 1 {
+              expect(list[0].id).to(equal(userId1))
+              expect(list[0].login).to(equal(username1))
+              expect(list[0].name).to(equal(userFullName1))
+              expect(list[0].avatarUrl).to(equal(avatar1))
+              expect(list[0].reposUrl).to(equal(userRepoUrl1))
+              expect(list[0].followers).to(equal(followers1))
+              expect(list[0].following).to(equal(following1))
+              
+              expect(list[1].id).to(equal(userId2))
+              expect(list[1].login).to(equal(username2))
+              expect(list[1].name).to(equal(userFullName2))
+              expect(list[1].avatarUrl).to(equal(avatar2))
+              expect(list[1].reposUrl).to(equal(userRepoUrl2))
+              expect(list[1].followers).to(equal(followers2))
+              expect(list[1].following).to(equal(following2))
+            }
+          }
+          
+          it("should return correct GitHubUser array for the next fetch") {
+            let currentLink = responseHeader["Link"] ?? ""
+            let headerLink = HTTPResponseHeaderLink(rawValue: currentLink)
+            let oldPagedObject: PagedObject<GitHubUserSearch> = PagedObject(
+              from: headerLink,
+              with: .initial(pageLimit: 30),
+              currentUrl: url.absoluteString,
+              results: [])
+            
+            // create new URL using the current's next
+            url = URL(string: nextUrlString)!
+            
+            // we modified nextUrlString and responseHeader for the subsequent fetch
+            nextUrlString = "\(sut.baseURL)/search/users?q=\(searchTerm!)+type:user+in:login&page=3&per_page=30"
+            responseHeader = [
+              "Link": """
+                <\(nextUrlString!)>; rel="next", <\(firstUrlString!)>; rel="first, <\(lastUrlString!)>; rel="last"
+              """
+            ]
+            
+            let responseData = responseJson.data(using: .utf8)!
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: responseHeader)
+            MockURLProtocol.reset()
+            
+            MockURLProtocol.mockResponses[url] = (data: responseData, response: response, error: nil)
+            
+            let (pagedObject, searchResult) = try await sut.searchUserListByUsername(
+              searchTerm,
+              paginationState: .continuing(oldPagedObject, .next))
+            
+            expect(searchResult.items?.count).to(equal(2))
+            expect(pagedObject.hasNext).to(beTrue())
+            expect(pagedObject.hasLast).to(beTrue())
+            expect(pagedObject.hasPrevious).to(beFalse())
+            expect(pagedObject.first).toNot(beNil())
+            expect(pagedObject.next).toNot(beNil())
+            expect(pagedObject.last).toNot(beNil())
+            expect(pagedObject.previous).to(beEmpty())
+            
+            if let list = searchResult.items, list.count > 1 {
+              expect(list[0].id).to(equal(userId1))
+              expect(list[0].login).to(equal(username1))
+              expect(list[0].name).to(equal(userFullName1))
+              expect(list[0].avatarUrl).to(equal(avatar1))
+              expect(list[0].reposUrl).to(equal(userRepoUrl1))
+              expect(list[0].followers).to(equal(followers1))
+              expect(list[0].following).to(equal(following1))
+              
+              expect(list[1].id).to(equal(userId2))
+              expect(list[1].login).to(equal(username2))
+              expect(list[1].name).to(equal(userFullName2))
+              expect(list[1].avatarUrl).to(equal(avatar2))
+              expect(list[1].reposUrl).to(equal(userRepoUrl2))
+              expect(list[1].followers).to(equal(followers2))
+              expect(list[1].following).to(equal(following2))
+            }
+          }
+        }
+        
+        context("when the request is failed") {
+          var url: URL!
+          var searchTerm: String!
+          
+          beforeEach {
+            searchTerm = "dude"
+            url = URL(string: "\(sut.baseURL)/search/users?q=\(searchTerm!)+type:user+in:login&per_page=30")!
+          }
+          
+          it("should throw correct error") {
+            MockURLProtocol.mockResponses[url] = (data: nil, response: nil, error: HTTPError.noNetwork)
+            
+            await expecta(
+              try await sut.searchUserListByUsername(searchTerm)
+            ).to(throwError(HTTPError.noNetwork))
+          }
+        }
+      }
     }
   }
 }
-// swiftlint:enable type_body_length
-// swiftlint:enable function_body_length
+// swiftlint:enable function_body_length type_body_length file_length
