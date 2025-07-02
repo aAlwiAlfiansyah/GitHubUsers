@@ -38,13 +38,20 @@ struct GitHubUserInfoView: View {
       
       VStack(alignment: .leading) {
         if let name = githubUser.login {
-          Text("@\(name)")
-            .font(.system(size: 20, weight: .bold, design: .monospaced))
-            .foregroundStyle(.black)
-            .lineLimit(1)
-            .allowsTightening(true)
-            .minimumScaleFactor(0.5)
-            .padding(.bottom, 5)
+          HStack(alignment: .bottom) {
+            Text("@\(name)")
+              .font(.system(size: 20, weight: .bold, design: .monospaced))
+              .foregroundStyle(.blue.opacity(0.7))
+              .lineLimit(1)
+              .allowsTightening(true)
+              .minimumScaleFactor(0.5)
+              .padding(.bottom, 5)
+            
+            Image(systemName: "paperplane.fill")
+              .foregroundColor(.blue.opacity(0.5))
+              .padding(.bottom, 5)
+          }
+          
         }
         
         if let name = githubUser.name {

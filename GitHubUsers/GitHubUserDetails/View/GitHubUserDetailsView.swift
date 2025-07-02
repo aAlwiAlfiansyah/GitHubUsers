@@ -23,10 +23,24 @@ struct GitHubUserDetailsView: View {
   // Scroll position item id
   @State var dataID: Int?
   
+  @State var searchTerm: String = ""
+  
+  var filteredRepos: [GitHubRepo] {
+    guard !searchTerm.isEmpty else {
+      return viewModel.githubRepos
+    }
+    
+    return viewModel.githubRepos.filter {
+      $0.name?.localizedCaseInsensitiveContains(searchTerm) ?? false
+    }
+  }
+  
   var body: some View {
     VStack {
-      GitHubUserInfoView(githubUser: viewModel.githubUser)
-        .frame(minWidth: 0, maxWidth: .infinity)
+      NavigationLink(value: viewModel.githubUser.id) {
+        GitHubUserInfoView(githubUser: viewModel.githubUser)
+          .frame(minWidth: 0, maxWidth: .infinity)
+      }
       
       VStack {
         Text("Repo List")
@@ -44,7 +58,7 @@ struct GitHubUserDetailsView: View {
       
       ScrollView {
         LazyVStack {
-          ForEach(viewModel.githubRepos.compactMap { $0 }, id: \.id) { item in
+          ForEach(filteredRepos.compactMap { $0 }, id: \.id) { item in
             NavigationLink(value: item) {
               GitHubUserRepoListViewItem(githubRepo: item)
             }
@@ -99,6 +113,7 @@ struct GitHubUserDetailsView: View {
           }
         }
       }
+      .searchable(text: $searchTerm, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Fetched GitHub Repo")
       
       Spacer()
     }
@@ -108,6 +123,12 @@ struct GitHubUserDetailsView: View {
       
       if let repoHtml = repo.htmlUrl {
         WebView(url: repoHtml)
+      }
+    }
+    .navigationDestination(for: Int.self) { [weak viewModel] user in
+      
+      if let userHtml = viewModel?.githubUser.htmlUrl {
+        WebView(url: userHtml)
       }
     }
     .onAppear {
@@ -127,6 +148,10 @@ struct GitHubUserDetailsView: View {
   // Will call async function to fetch more if scroll position is at the bottom
   private func onScroll(proxy: GeometryProxy) {
     guard let bound = proxy.bounds(of: .named(COORDINATE_SPACE)) else { return }
+    
+    guard searchTerm.isEmpty else {
+      return
+    }
 
     let topOffset = bound.minY
     let contentHeight = proxy.frame(in: .global).height

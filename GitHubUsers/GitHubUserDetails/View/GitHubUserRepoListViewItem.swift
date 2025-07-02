@@ -16,7 +16,7 @@ struct GitHubUserRepoListViewItem: View {
         if let name = githubRepo.name {
           Text(name)
             .font(.system(size: 20, weight: .bold, design: .monospaced))
-            .foregroundStyle(.black)
+            .foregroundStyle(.blue.opacity(0.7))
             .lineLimit(1)
             .allowsTightening(true)
             .minimumScaleFactor(0.5)
